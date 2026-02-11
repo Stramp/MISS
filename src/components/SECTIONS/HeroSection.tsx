@@ -4,23 +4,16 @@ import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
-import Section2 from './Section2';
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
-  const section2Ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    if (
-      sectionRef.current &&
-      bgRef.current &&
-      logoRef.current &&
-      section2Ref.current
-    ) {
+    if (sectionRef.current && bgRef.current && logoRef.current) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
@@ -28,48 +21,20 @@ export default function HeroSection() {
           end: '+=200%',
           scrub: 1,
           pin: true,
+          pinSpacing: false,
           anticipatePin: 1,
         },
       });
 
       // 1. Zoom In do BG e Zoom Out do Logo
-      tl.to(
-        bgRef.current,
-        {
-          scale: 2.7,
-          ease: 'power1.inOut',
-        },
-        0,
-      );
-
-      tl.to(
-        logoRef.current,
-        {
-          scale: 0.5,
-          ease: 'power1.inOut',
-        },
-        0.1,
-      );
+      tl.to(bgRef.current, { scale: 2.5, ease: 'power1.inOut' }, 0);
+      tl.to(logoRef.current, { scale: 0.5, ease: 'power1.inOut' }, 0.1);
 
       // 2. Logo sobe para o topo
-      tl.to(
-        logoRef.current,
-        {
-          y: '-43vh',
-          ease: 'power1.inOut',
-        },
-        0.13,
-      ); // Começa no meio do processo (0.5 da timeline)
+      tl.to(logoRef.current, { y: '-43vh', ease: 'power1.inOut' }, 0.13);
 
-      // 3. Section 2 sobe
-      tl.to(
-        section2Ref.current,
-        {
-          y: '-100%',
-          ease: 'none',
-        },
-        0.1,
-      );
+      // 5. Pequeno respiro no final da timeline para o pin segurar antes de soltar
+      tl.to({}, { duration: 0.2 });
     }
 
     return () => {
@@ -108,13 +73,6 @@ export default function HeroSection() {
         >
           Ride the Rainbow
         </h2>
-      </div>
-
-      <div
-        ref={section2Ref}
-        className="absolute top-full left-0 w-full h-full z-20"
-      >
-        <Section2 />
       </div>
     </section>
   );
