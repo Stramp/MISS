@@ -33,7 +33,8 @@ export default function Section2() {
       // 2. Animação de escala do vídeo ao passar do topo
       if (videoWrapperRef.current) {
         gsap.to(videoWrapperRef.current, {
-          scale: 0.9,
+          scaleX: 0.9,
+          scaleY: 0.95,
           borderRadius: '2rem',
           ease: 'power1.ou',
           scrollTrigger: {
@@ -80,7 +81,7 @@ export default function Section2() {
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.2 }}
             transition={{ duration: 1.2, ease: 'easeOut' }}
-            className="max-w-4xl w-full rounded-2xl overflow-hidden relative group shadow-[5px_8px_10px_rgba(0,0,0,0.6)] transition-transform duration-500"
+            className="max-w-4xl w-full rounded-2xl overflow-hidden relative group shadow-[5px_8px_10px_rgba(0,0,0,0.6)]"
           >
             <Image
               src="/fairyGreenFotoModel.png"
@@ -89,10 +90,10 @@ export default function Section2() {
               height={1600}
               className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-10 left-0 w-full flex flex-col items-center gap-2 px-4 text-center">
               <h3
-                className="text-white text-xl md:text-3xl uppercase tracking-[0.4em] font-extralight drop-shadow-2xl"
+                className="text-white text-xl md:text-3xl uppercase tracking-[0.4em] font-bold drop-shadow-2xl"
                 style={{
                   fontFamily: 'var(--font-inter), sans-serif',
                   filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))',
@@ -110,7 +111,7 @@ export default function Section2() {
           </motion.div>
 
           {/* Spellbound Container */}
-          <motion.div className="max-w-4xl w-full rounded-2xl overflow-hidden relative group shadow-[5px_8px_10px_rgba(0,0,0,0.6)] transition-transform duration-500">
+          <div className="max-w-4xl w-full rounded-2xl overflow-hidden relative group shadow-[5px_8px_10px_rgba(0,0,0,0.6)]">
             <Image
               src="/spellbound.png"
               alt="Spellbound Model"
@@ -118,10 +119,10 @@ export default function Section2() {
               height={1600}
               className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/100 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-10 left-0 w-full flex flex-col items-center gap-2 px-4 text-center">
               <h3
-                className="text-white text-xl md:text-3xl uppercase tracking-[0.4em] font-extralight drop-shadow-2xl"
+                className="text-white text-xl md:text-3xl uppercase tracking-[0.4em] font-bold drop-shadow-2xl"
                 style={{
                   fontFamily: 'var(--font-inter), sans-serif',
                   filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))',
@@ -130,13 +131,13 @@ export default function Section2() {
                 Spellbound
               </h3>
               <p
-                className="text-white/80 text-[16px] md:text-xs tracking-[0.2em] font-light max-w-[80%]"
+                className="text-white/80 text-[15px] md:text-xs tracking-[0.2em] font-light max-w-[80%]"
                 style={{ filter: 'drop-shadow(0 0 5px rgba(0,0,0,0.5))' }}
               >
-                Aquele ROXO misterioso que enfeitiça até as mais trevosas
+                Aquele Roxo misterioso que enfeitiça até as mais trevosas
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
