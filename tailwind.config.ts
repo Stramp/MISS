@@ -12,6 +12,15 @@ const config: Config = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
+      keyframes: {
+        'scroll-line': {
+          '0%': { transform: 'translateY(-100%)' },
+          '100%': { transform: 'translateY(100%)' },
+        },
+      },
+      animation: {
+        'scroll-line': 'scroll-line 2s cubic-bezier(0.65, 0, 0.35, 1) infinite',
+      },
     },
   },
   plugins: [],
