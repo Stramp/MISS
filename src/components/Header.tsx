@@ -14,8 +14,7 @@ export default function Header() {
     let st: ScrollTrigger;
 
     if (headerRef.current) {
-      // Estado inicial: Escondido acima e invisível
-      gsap.set(headerRef.current, { y: -100, opacity: 0 });
+      // O estado inicial já é definido via CSS (opacity-0 e -translate-y-full)
 
       // Dispara a animação quando a Section2 começa a aparecer
       st = ScrollTrigger.create({
@@ -23,7 +22,7 @@ export default function Header() {
         start: 'top 10%', // Quando o topo da Section2 chega a 10% da tela
         onEnter: () => {
           gsap.to(headerRef.current, {
-            y: 0,
+            y: '0%',
             opacity: 1,
             duration: 0.6,
             ease: 'power4.out',
@@ -31,7 +30,7 @@ export default function Header() {
         },
         onLeaveBack: () => {
           gsap.to(headerRef.current, {
-            y: -100,
+            y: '-100%',
             opacity: 0,
             duration: 0.6,
             ease: 'power4.in',
@@ -48,7 +47,7 @@ export default function Header() {
   return (
     <header
       ref={headerRef}
-      className="fixed top-0 left-0 w-full z-50 py-2 px-6 md:px-12 flex items-center justify-end transition-colors duration-500"
+      className="fixed top-0 left-0 w-full z-50 py-2 px-6 md:px-12 flex items-center justify-end transition-colors duration-500 opacity-0 -translate-y-full"
     >
       {/* Blur e Background Glassmorphism */}
       <div className="absolute inset-0 bg-white/60 backdrop-blur-md -z-10 border-b border-white/10" />

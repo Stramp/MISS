@@ -15,7 +15,7 @@ export default function HeroSection() {
 
   const handleScrollClick = () => {
     // Calcula o scroll para a próxima seção (mt-[50vh] na page.tsx)
-    const targetScroll = window.innerHeight * 1.55;
+    const targetScroll = window.innerHeight * 1.5;
 
     if (lenis) {
       lenis.scrollTo(targetScroll, {

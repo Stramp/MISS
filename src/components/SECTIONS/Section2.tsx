@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 
 export default function Section2() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoWrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -28,6 +29,21 @@ export default function Section2() {
           },
         },
       );
+
+      // 2. Animação de escala do vídeo ao passar do topo
+      if (videoWrapperRef.current) {
+        gsap.to(videoWrapperRef.current, {
+          scale: 0.9,
+          borderRadius: '2rem',
+          ease: 'power1.ou',
+          scrollTrigger: {
+            trigger: videoWrapperRef.current,
+            start: '-5% top', // Inicia quando o topo do vídeo toca o topo da tela
+            end: '15% top', // Termina quando o meio do vídeo toca o topo da tela
+            scrub: true,
+          },
+        });
+      }
     }, containerRef);
 
     return () => ctx.revert();
@@ -37,48 +53,90 @@ export default function Section2() {
     <section className="relative min-h-screen w-full bg-transparent pt-[7rem]">
       <div
         ref={containerRef}
-        className="w-full min-h-screen bg-white rounded-t-[3rem] shadow-[0_-20px_50px_rgba(0,0,0,0.1)] flex flex-col items-center justify-start p-6 pb-20"
+        className="w-full h-full bg-white rounded-t-[3rem] overflow-hidden flex flex-col items-center shadow-[0_-20px_50px_rgba(0,0,0,0.1)]"
       >
-        <Image
-          src="/bannerGIF.gif"
-          alt="Logo"
-          width={500}
-          height={500}
-          className="w-full h-auto object-contain drop-shadow-2xl rounded-t-[2rem]"
-          priority
-        />
-        <div className="w-full h-full flex flex-col items-center justify-start">
-          <h2 className="text-2xl font-bold mt-3 text-center">
-            <span style={{ color: '#FF0000' }}>Cores</span>{' '}
-            <span style={{ color: '#FF7F00' }}>Mágicas</span>{' '}
-            <span style={{ color: '#22C55E' }}>para</span>{' '}
-            <span style={{ color: '#3B82F6' }}>garotas</span>{' '}
-            <span style={{ color: '#9400D3' }}>Mágicas</span>
-          </h2>
+        {/* Vídeo em Tela Cheia com animação de escala */}
+        <div
+          ref={videoWrapperRef}
+          className="w-full h-screen relative flex-shrink-0 will-change-transform origin-top"
+        >
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/videoMobileVerde.mp4" type="video/mp4" />
+            Seu navegador não suporta vídeos.
+          </video>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 w-full max-w-6xl">
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(num => (
-              <motion.div
-                key={num}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.1 }}
-                transition={{
-                  duration: 0.8,
-                  ease: 'easeOut',
+        {/* Imagens das Modelos */}
+        <div className="w-full relative pt-0 pb-20 px-6 flex flex-col items-center gap-10 bg-white">
+          {/* Green Fairy Container */}
+          <motion.div
+            initial={{ opacity: 0, y: 100, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 1.2, ease: 'easeOut' }}
+            className="max-w-4xl w-full rounded-2xl overflow-hidden relative group shadow-[5px_8px_10px_rgba(0,0,0,0.6)] transition-transform duration-500"
+          >
+            <Image
+              src="/fairyGreenFotoModel.png"
+              alt="Fairy Green Model"
+              width={1200}
+              height={1600}
+              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-10 left-0 w-full flex flex-col items-center gap-2 px-4 text-center">
+              <h3
+                className="text-white text-xl md:text-3xl uppercase tracking-[0.4em] font-extralight drop-shadow-2xl"
+                style={{
+                  fontFamily: 'var(--font-inter), sans-serif',
+                  filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))',
                 }}
-                className="banner-card overflow-hidden rounded-2xl shadow-lg hover:scale-[1.02] cursor-pointer"
               >
-                <Image
-                  src={`/bannerCor${num}.png`}
-                  alt={`Banner de cor ${num}`}
-                  width={1200}
-                  height={800}
-                  className="w-full h-auto block"
-                />
-              </motion.div>
-            ))}
-          </div>
+                Green Fairy
+              </h3>
+              <p
+                className="text-white/80 text-[16px] md:text-xs tracking-[0.2em] font-light max-w-[80%]"
+                style={{ filter: 'drop-shadow(0 0 5px rgba(0,0,0,0.5))' }}
+              >
+                Para fadas que se derramam nos licores verde Neon
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Spellbound Container */}
+          <motion.div className="max-w-4xl w-full rounded-2xl overflow-hidden relative group shadow-[5px_8px_10px_rgba(0,0,0,0.6)] transition-transform duration-500">
+            <Image
+              src="/spellbound.png"
+              alt="Spellbound Model"
+              width={1200}
+              height={1600}
+              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-10 left-0 w-full flex flex-col items-center gap-2 px-4 text-center">
+              <h3
+                className="text-white text-xl md:text-3xl uppercase tracking-[0.4em] font-extralight drop-shadow-2xl"
+                style={{
+                  fontFamily: 'var(--font-inter), sans-serif',
+                  filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.5))',
+                }}
+              >
+                Spellbound
+              </h3>
+              <p
+                className="text-white/80 text-[16px] md:text-xs tracking-[0.2em] font-light max-w-[80%]"
+                style={{ filter: 'drop-shadow(0 0 5px rgba(0,0,0,0.5))' }}
+              >
+                Aquele ROXO misterioso que enfeitiça até as mais trevosas
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
