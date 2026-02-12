@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scale } from 'framer-motion';
 
 export default function Header() {
   const headerRef = useRef<HTMLElement>(null);
@@ -50,7 +51,7 @@ export default function Header() {
       className="fixed top-0 left-0 w-full z-50 py-2 px-6 md:px-12 flex items-center justify-end transition-colors duration-500 opacity-0 -translate-y-full"
     >
       {/* Blur e Background Glassmorphism */}
-      <div className="absolute inset-0 bg-white/60 backdrop-blur-md -z-10 border-b border-white/10" />
+      <div className="absolute inset-0 bg-white/30 backdrop-blur-md -z-10 border-b border-white/10" />
 
       {/* Logo Centralizado */}
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-20 md:w-28 h-10">
@@ -60,6 +61,7 @@ export default function Header() {
           fill
           className="object-contain"
           priority
+          style={{ scale: 1.4 }}
         />
       </div>
 
